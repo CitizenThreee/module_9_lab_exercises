@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            padding: 50px;
+            background-color: #dfdfdf;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        p{
+            font-size: 150px;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+        }
+
+        button{
+            padding: 20px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div>
+        <p id="emoji"></p>
+        <button onclick='GetRandomEmoji()'>Random Emoji</button>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const emoji = document.getElementById('emoji');
+
+    async function GetRandomEmoji() {
+        const newEmoji = await axios.get('http://localhost:8082/api/emoji/random')
+        emoji.innerHTML = newEmoji.data.data;
+    }
+</script>
+
+</html>
